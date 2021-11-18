@@ -79,12 +79,29 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      var currentRow = this.rows()[rowIndex]
+      var result = 0
+      for (var i = 0; i < currentRow.length; i++) {
+        if (currentRow[i] === 1) {
+          result++;
+        }
+      }
+      if (result <=1) {
+        return false;
+      }
+      return true;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var currentBoard = this.rows()
+      for (var i = 0; i < currentBoard.length; i++) {
+        if (this.hasRowConflictAt(i) === true) {
+          return true;
+          break;
+        };
+      }
+      return false;
     },
 
 
@@ -94,11 +111,28 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      var currentBoard = this.rows()
+      var result = 0;
+      for (var i = 0; i < currentBoard.length; i++) {
+        if (currentBoard[i][colIndex] === 1)
+        result++;
+      }
+
+      if (result > 1) {
+        return true;
+      }
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      var currentBoard = this.rows();
+      for (var i = 0; i < currentBoard.length; i++) {
+        if (this.hasColConflictAt(i) === true) {
+          return true;
+          break;
+        };
+      }
       return false; // fixme
     },
 
@@ -109,13 +143,46 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+     /* var matrix = [
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ];
+      var i, j
+      verify if this position === 1 ?
+      i++, j++
+      recursion
+      */
+      var i = 0;
+      var j = majorDiagonalColumnIndexAtFirstRow;
+      var result = 0;
+      var currentBoard = this.rows();
+      for (i; i < currentBoard.length; i++ ) {
+        if (currentBoard[i][j] === 1) {
+          result++;
+        }
+        j++;
+      }
+      if (result > 1) {
+        return true
+      }
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+      var currentBoard = this.rows();
+      for (var x = - currentBoard.length + 1; x < currentBoard.length; x++ ) {
+        if (this.hasMajorDiagonalConflictAt(x)) {
+          return true;
+          break;
+        }
+      }
+
       return false; // fixme
     },
+
 
 
 
