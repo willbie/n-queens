@@ -152,7 +152,6 @@
       var i, j
       verify if this position === 1 ?
       i++, j++
-      recursion
       */
       var i = 0;
       var j = majorDiagonalColumnIndexAtFirstRow;
@@ -191,11 +190,31 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      var currentBoard = this.rows();
+      var i = 0;
+      var j = minorDiagonalColumnIndexAtFirstRow;
+      var result = 0;
+      for (i; i < currentBoard.length; i++ ) {
+        if (currentBoard[i][j] === 1) {
+          result++;
+        }
+        j--;
+      }
+      if (result > 1) {
+        return true
+      }
       return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
+      var currentBoard = this.rows();
+      for (var x = currentBoard.length * 2 - 1; x >= 0; x-- ) {
+        if (this.hasMinorDiagonalConflictAt(x)) {
+          return true;
+          break;
+        }
+      }
       return false; // fixme
     }
 
