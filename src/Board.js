@@ -144,10 +144,10 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
      /* var matrix = [
-        [0, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0]
+    0 0 0 0 [0, 0, 0, 0], 0 0 0 0
+    0 0 0 0 [0, 0, 0, 0], 0 0 0 0
+    0 0 0 0 [0, 0, 0, 0], 0 0 0 0
+    0 0 0 0 [0, 0, 0, 0], 0 0 0 0
       ];
       var i, j
       verify if this position === 1 ?
